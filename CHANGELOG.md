@@ -1,6 +1,6 @@
 # Changelog
 
-## [2.0.0] - 2026-06-11
+## [2.1.0] - 2026-06-11
 
 ### Major Changes
 - **Expanded Date Range Support**: Now fully supports **1900 to 2100 BS** (previously limited to ~2000-2100). 
