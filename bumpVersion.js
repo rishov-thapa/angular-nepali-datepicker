@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const oldVersion = '1.0.3';
-const newVersion = "1.0.4"
+const oldVersion = '1.0.1';
+const newVersion = "2.0.0"
 
 if (!newVersion) {
   console.error('❌ Please provide a version number, e.g., node postinstall.js 1.0.2');

@@ -1,13 +1,13 @@
 <h1 align="center">Welcome to Angular Nepali DatePicker Calendar 👋</h1>
 <p>
-  <img alt="Release" src="https://img.shields.io/badge/Release-v1.0.4-blueviolet.svg"
-  <a href="https://rishov21.github.io/#/documentation" target="_blank">
+  <img alt="Release" src="https://img.shields.io/badge/Release-v2.0.0-blueviolet.svg"
+  <a href="https://rishov-thapa.github.io/#/documentation" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/Documentation-Available-orange.svg" />
   </a>
-  <a href="https://github.com/rishov21/angular-nepali-datepicker/graphs/commit-activity" target="_blank">
+  <a href="https://github.com/rishov-thapa/angular-nepali-datepicker/graphs/commit-activity" target="_blank">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained-Yes-brightgreen.svg" />
   </a>
-  <a href="https://github.com/rishov21/angular-nepali-datepicker/blob/master/LICENSE" target="_blank">
+  <a href="https://github.com/rishov-thapa/angular-nepali-datepicker/blob/master/LICENSE" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-gold.svg" />
   </a>
   <a href="https://www.buymeacoffee.com/rishovthapa" target="_blank">
@@ -21,12 +21,18 @@
   </a>
 </p>
 
+> ⚠️ **Notice**
+>
+> Earlier npm package versions were accidentally removed. If you came here looking for **v1.0.1**, we sincerely apologize for the inconvenience.
+>
+> The current release, **v2.0.0**, is largely equivalent to **v1.0.1** and contains the same core functionality. We recommend upgrading to the latest version.
 
-> A lightweight, customizable Angular wrapper, build around JS with support for Unicode-rendered Nepali dates for both Reactive Forms and ngModel and flexible date formats. Ideal for forms requiring calendar-based Nepali inputs as well as AD-BS and BS-AD conversions. ( [DEMO](https://rishov21.github.io/#/home) )
+
+> A lightweight, customizable Angular wrapper, build around JS with support for Unicode-rendered Nepali dates for both Reactive Forms and ngModel and flexible date formats. Ideal for forms requiring calendar-based Nepali inputs as well as AD-BS and BS-AD conversions. ( [DEMO](https://rishov-thapa.github.io/#/home) )
 
 ![alt text](image.png)
 
-### 🏠 [Homepage](https://rishov21.github.io/#/home)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶️ [Live Demo](https://rishov21.github.io/#/home)
+### 🏠 [Homepage](https://rishov-thapa.github.io/#/home)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▶️ [Live Demo](https://rishov-thapa.github.io/#/home)
 
 ## Prerequisites
 
@@ -55,7 +61,7 @@ These are usually already installed in any standard Angular app.
 - 📱 Responsive & Lightweight: Optimized for performance and mobile-friendly design with Dark mode support
 - 🔧 Well-Maintained: Regular updates and active support to keep your app running smoothly.
 
-<a href="https://rishov21.github.io/#/documentation" style="color:#007acc;font-weight:bold;font-size:16px;" target="_blank">
+<a href="https://rishov-thapa.github.io/#/documentation" style="color:#007acc;font-weight:bold;font-size:16px;" target="_blank">
     🌐 View Documentation
 </a>
 
@@ -126,7 +132,7 @@ onDateSelect(event : DateObject) {
     console.log('Selected Date Object:', this.selectedDate);
 }
 ```
- <a href="https://rishov21.github.io/#/supported-options" style="color:#007acc;font-weight:bold;" target="_blank">
+ <a href="https://rishov-thapa.github.io/#/supported-options" style="color:#007acc;font-weight:bold;" target="_blank">
     🔗 Click here for full list of available options → <br>
     🌐 Visit the main website for examples
 </a><br><br>
@@ -161,7 +167,7 @@ If you find this package helpful, feel free to:
 
 - ⭐ Star the repo to show support
 - 🤝 Connect with me on [LinkedIn](https://www.linkedin.com/in/rishov-thapa/)
-- 🧑‍💻 Follow me on [GitHub](https://github.com/rishov21)
+- 🧑‍💻 Follow me on [GitHub](https://github.com/rishov-thapa)
 - ☕ [Buy me a coffee](https://www.buymeacoffee.com/rishovthapa) if you’d like to support future development
 
 <p align="left">
@@ -180,11 +186,11 @@ This project is not affiliated with or endorsed by the original authors of the `
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/rishov21/angular-nepali-datepicker/issues). You can also take a look at the [contributing guide](https://github.com/rishov21/angular-nepali-datepicker/blob/master/CONTRIBUTING.md).
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/rishov-thapa/angular-nepali-datepicker/issues). You can also take a look at the [contributing guide](https://github.com/rishov-thapa/angular-nepali-datepicker/blob/master/CONTRIBUTING.md).
 
 ## 📝 License
 
-Copyright © 2025 [Rishov Thapa Chhetri <rishov096@gmail.com>](https://github.com/rishov21).<br />
-This project is [MIT](https://github.com/rishov21/angular-nepali-datepicker/blob/master/LICENSE) licensed.
+Copyright © 2025 [Rishov Thapa Chhetri <rishov096@gmail.com>](https://github.com/rishov-thapa).<br />
+This project is [MIT](https://github.com/rishov-thapa/angular-nepali-datepicker/blob/master/LICENSE) licensed.
 
 ***
