@@ -9,7 +9,5 @@
       "@angular/common": "ng.common"
     }
   },
-  "assets": [
-    "assets/**/*"
-  ]
+  "assets": []
 }

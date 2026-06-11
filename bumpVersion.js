@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const oldVersion = '1.0.1';
-const newVersion = "2.0.0"
+const oldVersion = "888.1.1"
+const newVersion = "2.1.0"
 
 if (!newVersion) {
   console.error('❌ Please provide a version number, e.g., node postinstall.js 1.0.2');
@@ -15,6 +15,7 @@ const filesToUpdate = [
   'package.json',
   'projects/angular-nepali-datepicker/package.json',
   'projects/angular-nepali-datepicker-ve/package.json',
+  'publishPackage/package.json',
   "package-lock.json",
 ];
 
@@ -61,8 +62,7 @@ if (fs.existsSync(readmePath)) {
   }
 }
 
-const assetsPathIvy = path.resolve(__dirname, '../angular-nepali-datepicker/projects/angular-nepali-datepicker/assets');
-const assetsPathVE = path.resolve(__dirname, '../angular-nepali-datepicker/projects/angular-nepali-datepicker-ve/assets');
+const assetsPath = path.resolve(__dirname, '../angular-nepali-datepicker/projects/scripts/assets');
 function renameAssetsIn(dir) {
   const cssOld = path.join(dir, `nepali.datepicker.v${oldVersion}.min.css`);
   const cssNew = path.join(dir, `nepali.datepicker.v${newVersion}.min.css`);
@@ -73,16 +73,13 @@ function renameAssetsIn(dir) {
   if (fs.existsSync(jsOld)) fs.renameSync(jsOld, jsNew);
 }
 
-renameAssetsIn(assetsPathIvy);
-renameAssetsIn(assetsPathVE);
+renameAssetsIn(assetsPath);
 
 
-
-const serviceFilePathIvy = path.resolve(__dirname, '../angular-nepali-datepicker/projects/angular-nepali-datepicker/src/lib/angular-nepali-datepicker.service.ts');
-const serviceFilePathVe = path.resolve(__dirname, '../angular-nepali-datepicker/projects/angular-nepali-datepicker-ve/src/lib/angular-nepali-datepicker.service.ts');
+const bundleGenerationPath = path.resolve(__dirname, '../angular-nepali-datepicker/projects/scripts/generate-bundle.js');
 
 
-function updateServiceFileVersion(filePath, oldVersion, newVersion) {
+function updateBundleFileVersion(filePath, oldVersion, newVersion) {
   if (!fs.existsSync(filePath)) {
     console.error(`❌ File not found: ${filePath}`);
     return;
@@ -101,5 +98,4 @@ function updateServiceFileVersion(filePath, oldVersion, newVersion) {
   }
 }
 
-updateServiceFileVersion(serviceFilePathIvy, oldVersion, newVersion);
-updateServiceFileVersion(serviceFilePathVe, oldVersion, newVersion);
+updateBundleFileVersion(bundleGenerationPath, oldVersion, newVersion);

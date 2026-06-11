@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DateObject, NepaliFunctions } from './types';
 import { RtcNepaliDatepickerComponent } from './angular-nepali-datepicker.component';
+import { nepaliDatepickerCSS, nepaliDatepickerJS } from './generated-assets';
 
 @Injectable()
 export class RtcNepaliDatepickerService {
@@ -47,38 +48,21 @@ export class RtcNepaliDatepickerService {
     }
     if (!this.libraryLoadedPromise) {
       this.libraryLoadedPromise = new Promise((resolve, reject) => {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.type = 'text/css';
-        link.href = `${this.basePath}/nepali.datepicker.v1.0.4.min.css`;
-        link.onload = () => {
-          console.log('CSS loaded successfully');
-          this.loadNepaliDatePicker(resolve, reject);
-        };
-        link.onerror = (error) => {
-          console.error('Failed to load CSS:', error);
+        try{
+          this.injectCSS();
+          this.injectJS();
+        setTimeout(() => {
+            this.isLoaded = true;
+            console.log('Bundle loaded successfully');
+            resolve();
+          }, 100);
+        } catch (error) {
+          console.error('Failed to inject Bundle:', error);
           reject(error);
-        };
-        document.head.appendChild(link);
+        }
       });
     }
     return this.libraryLoadedPromise;
-  }
-
-  private loadNepaliDatePicker(resolve: () => void, reject: (reason?: any) => void): void {
-    const script = document.createElement('script');
-    script.src = `${this.basePath}/nepali.datepicker.v1.0.4.min.js`;
-    script.type = 'text/javascript';
-    script.onload = () => {
-      console.log('Nepali Datepicker JS loaded successfully');
-      this.isLoaded = true;
-      resolve();
-    };
-    script.onerror = (error) => {
-      console.error('Failed to load Nepali Datepicker JS:', error);
-      reject(error);
-    };
-    document.body.appendChild(script);
   }
 
   private async ensureLibraryLoaded(): Promise<NepaliFunctions> {
@@ -87,6 +71,23 @@ export class RtcNepaliDatepickerService {
       throw new Error('NepaliFunctions not available');
     }
     return window.NepaliFunctions;
+  }
+  
+  private injectCSS(): void {
+    if (document.getElementById('nepali-datepicker-style')) return;
+    const style = document.createElement('style');
+    style.id = 'nepali-datepicker-style';
+    style.textContent = nepaliDatepickerCSS;
+    document.head.appendChild(style);
+  }
+
+  private injectJS(): void {
+    if (document.getElementById('nepali-datepicker-script')) return;
+    const script = document.createElement('script');
+    script.id = 'nepali-datepicker-script';
+    script.type = 'text/javascript';
+    script.textContent = nepaliDatepickerJS;
+    document.body.appendChild(script);
   }
 
   async AD2BS(adDate: DateObject | string, sourceDateFormat?: string, returnDateFormat?: string): Promise<DateObject | string> {

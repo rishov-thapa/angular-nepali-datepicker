@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to Angular Nepali DatePicker Calendar 👋</h1>
 <p>
-  <img alt="Release" src="https://img.shields.io/badge/Release-v2.0.0-blueviolet.svg"
+  <img alt="Release" src="https://img.shields.io/badge/Release-v2.1.0-blueviolet.svg"
   <a href="https://rishov-thapa.github.io/#/documentation" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/Documentation-Available-orange.svg" />
   </a>
@@ -21,14 +21,33 @@
   </a>
 </p>
 
-> ⚠️ **Notice**
->
-> Earlier npm package versions were accidentally removed. If you came here looking for **v1.0.1**, we sincerely apologize for the inconvenience.
->
-> The current release, **v2.0.0**, is largely equivalent to **v1.0.1** and contains the same core functionality. We recommend upgrading to the latest version.
 
+> A lightweight, customizable Angular wrapper, build around JS with support for Unicode-rendered Nepali dates for both Reactive Forms and ngModel and flexible date formats. Ideal for forms requiring calendar-based Nepali inputs as well as AD-BS and BS-AD conversions from (1900-2100) BS. ( [DEMO](https://rishov-thapa.github.io/#/home) )
 
-> A lightweight, customizable Angular wrapper, build around JS with support for Unicode-rendered Nepali dates for both Reactive Forms and ngModel and flexible date formats. Ideal for forms requiring calendar-based Nepali inputs as well as AD-BS and BS-AD conversions. ( [DEMO](https://rishov-thapa.github.io/#/home) )
+## 🚀 What's New in v2.1.0
+
+### Major Changes
+
+#### 📅 Expanded Date Range Support
+> The date engine has been significantly enhanced and now fully supports conversion accurately from **1900 BS → 2100 BS**.
+> 
+> Previously, the supported range was limited to approximately **2000 BS → 2100 BS**.  
+This update provides much more accurate historical and future date coverage, making the library suitable for wide range of conversion.
+
+#### 📦 Zero Configuration Assets
+> A major Developer Experience (DX) improvement.
+> 
+> All required JavaScript and CSS assets are now fully bundled inside the library.
+> 
+> **Before**
+> - Consumers had to manually add asset paths in `angular.json`
+> - Additional setup steps were required after installation
+> 
+> **Now**
+> - No asset configuration required
+> - No manual script or style imports
+> - Install and start using immediately
+> ####
 
 ![alt text](image.png)
 
@@ -39,7 +58,7 @@
 To use @rishovt/angular-nepali-datepicker, make sure your project meets the following requirements
 
 ✅ Angular Compatibility
-- Supports both View Engine and Ivy compilation modes.
+- This library supports both View Engine and Ivy compilation modes.
 
 📦 Peer Dependencies
 Make sure the following are available in your project:
@@ -90,20 +109,7 @@ import { RtcNepaliDatePickerModule } from '@rishovt/angular-nepali-datepicker';
 })
 export class AppModule {}
 ``` 
-2. 🌐 Angular JSON 
-   
-   You need to add the following to your angular.json file for the consumer to be able to know the js and css paths:
-```json
-"assets": 
-[
-    {
-        "input": "./node_modules/@rishovt/angular-nepali-datepicker/assets",
-        "glob": "**/*",
-        "output": "/assets"
-    }
-]
-```   
-3. 🧩 Component Usage
+2. 🧩 Component Usage
 
 ```html
 <rtc-nepali-datepicker
@@ -137,7 +143,7 @@ onDateSelect(event : DateObject) {
     🌐 Visit the main website for examples
 </a><br><br>
 
-5. 🛠 Nepali Datepicker Service
+3. 🛠 Nepali Datepicker Service
 ```ts
 import { NepaliDatepickerService } from '@rishovt/angular-nepali-datepicker';
 
@@ -161,7 +167,7 @@ private setDate(dateId: string, date: string) {
 
 ## 🙋‍♂️ About the Author
 
-Made with ❤️ by [Rishov Thapa](https://www.linkedin.com/in/rishovthapa/)<br>
+Developed by [Rishov Thapa](https://www.linkedin.com/in/rishovthapa/)<br>
 I'm a passionate developer focused on building clean, efficient, and practical tools for real-world projects.  
 If you find this package helpful, feel free to:
 
@@ -178,8 +184,9 @@ If you find this package helpful, feel free to:
 
 
 ## 🙏 Credits
-This library internally uses the JavaScript and CSS assets from [sajanm/nepali-date-picker](https://github.com/sajanm/nepali-date-picker).  
-All credits for the original date picker logic and javascript goes to the original author.
+This library is built on top of the original [nepali-date-picker](https://github.com/sajanm/nepali-date-picker) by **Sajan Maharjan**.
+
+While the core logic has been significantly rewritten and customized for better Angular integration, bundling, and performance, the project still draws inspiration and foundational concepts from the original work.
 
 ---
 This project is not affiliated with or endorsed by the original authors of the `nepali-date-picker` library.

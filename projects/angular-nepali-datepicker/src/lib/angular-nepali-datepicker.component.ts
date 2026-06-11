@@ -25,6 +25,10 @@ import { DateObject } from './types';
   ]
 })
 export class RtcNepaliDatepickerComponent implements AfterViewInit, OnInit {
+  
+  private readonly HARD_MIN_DATE = { year: 1900, month: 1, day: 1 };
+  private readonly HARD_MAX_DATE = { year: 2100, month: 12, day: 31 };
+  
   @Input() options: {
     classes?: string;
     placeholder?: string;
@@ -58,13 +62,35 @@ export class RtcNepaliDatepickerComponent implements AfterViewInit, OnInit {
         placeholder: 'Select Nepali Date',
         dateFormat: 'YYYY-MM-DD',
         closeOnDateSelect: true,
-        minDate: { year: 1800, month: 1, day: 1 },
-        maxDate: currentDate,
+        minDate: this.HARD_MIN_DATE,
+        maxDate: this.clampMaxDate(currentDate),
         disabled: false,
         unicodeDate: true,
         language: 'nepali'
       };
     })
+  }
+  
+  private clampDate(date: { year: number; month: number; day: number } | undefined, 
+                   isMin: boolean): { year: number; month: number; day: number } {
+    if (!date) {
+      return isMin ? { ...this.HARD_MIN_DATE } : { ...this.HARD_MAX_DATE };
+    }
+    if (isMin) {
+      if (date.year < 1900) {
+        return { ...this.HARD_MIN_DATE };
+      }
+      return date;
+    } else {
+      if (date.year > 2100) {
+        return { ...this.HARD_MAX_DATE };
+      }
+      return date;
+    }
+  }
+
+  private clampMaxDate(currentDate:any) {
+    return this.clampDate(currentDate, false);
   }
 
   onKeyDown(event: KeyboardEvent): boolean {
@@ -104,9 +130,15 @@ export class RtcNepaliDatepickerComponent implements AfterViewInit, OnInit {
       console.error('Nepali Date Picker is not loaded. Make sure the assets is included in consumer angular.json.');
       return;
     }
+    
+    const clampedMin = this.clampDate(this.options.minDate, true);
+    const clampedMax = this.clampDate(this.options.maxDate, false);
+    
     const config = {
       ...this.defaultOptions,
       ...this.options,
+      minDate: clampedMin,
+      maxDate: clampedMax,
       onSelect: (bsDate: any) => {
         this.dateChange.emit(bsDate);
         input.dispatchEvent(new Event('change'));
@@ -123,6 +155,8 @@ export class RtcNepaliDatepickerComponent implements AfterViewInit, OnInit {
       const updatedOptions = {
         ...this.defaultOptions,
         ...this.options,
+        minDate: this.clampDate(this.options.minDate, true),
+        maxDate: this.clampDate(this.options.maxDate, false),
         value: bsDate,
         onSelect: (selectedDate: any) => {
           this.dateChange.emit(selectedDate);

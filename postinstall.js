@@ -1,8 +1,10 @@
+console.log('🔥 POSTINSTALL SCRIPT STARTED - @rishovt/angular-nepali-datepicker');
+
 const fs = require('fs');
 const path = require('path');
 
-const ROOT = path.resolve(__dirname, '..', '..'); // node_modules/@rishovt/angular-nepali-datepicker",
-const DIST_FOLDER = path.resolve(__dirname); // dist/angular-nepali-datepicker
+const ROOT = path.resolve(__dirname);
+const DIST_FOLDER = path.resolve(__dirname);
 const SOURCE_FOLDER = DIST_FOLDER;
 
 function findPackageJsonRoot(startDir) {
@@ -38,7 +40,6 @@ function findConsumerRoot(startDir) {
     if (fs.existsSync(pkgPath)) {
       try {
         const pkg = require(pkgPath);
-        // Skip if it's your own library
         if (pkg.name && pkg.name !== '@rishovt/angular-nepali-datepicker') {
           return currentDir;
         }
@@ -73,13 +74,13 @@ const nodeVersion = process.version.match(/^v(\d+\.\d+\.\d+)/)[1];
 const isOldNode = parseFloat(nodeVersion) < 10;
 
 // Detect Angular version
-const angularVersion = getAngularVersion(path.resolve(__dirname, '..', '..'));
+const angularVersion = getAngularVersion(path.resolve(__dirname));
 const isIvy = !isOldNode && /^1[1-9]|2[0-9]/.test(angularVersion);
 
 const buildType = isIvy ? 'angular-nepali-datepicker-ivy' : 'angular-nepali-datepicker-ve';
 const buildPath = path.join(SOURCE_FOLDER, buildType);
 
-// Validate source path
+// Copy the appropriate build
 if (!fs.existsSync(buildPath)) {
   console.warn(`[angular-nepali-datepicker] Source folder does not exist: ${buildPath}. Falling back to View Engine.`);
   const fallbackBuildPath = path.join(SOURCE_FOLDER, 'angular-nepali-datepicker-ve');
@@ -93,3 +94,21 @@ if (!fs.existsSync(buildPath)) {
   copyRecursiveSync(buildPath, ROOT);
   console.log(`[angular-nepali-datepicker] ✅ Installed ${buildType} ${isIvy ? 'IVY' : 'VE'} build for Angular ${angularVersion}`);
 }
+
+// ====================== CLEANUP ======================
+// Delete the source folders after successful copy
+try {
+  const ivyFolder = path.join(ROOT, 'angular-nepali-datepicker-ivy');
+  const veFolder = path.join(ROOT, 'angular-nepali-datepicker-ve');
+  if (fs.existsSync(ivyFolder)) {
+    fs.rmSync(ivyFolder, { recursive: true, force: true });
+    console.log('🧹 Cleaned up angular-nepali-datepicker-ivy folder');
+  }
+  if (fs.existsSync(veFolder)) {
+    fs.rmSync(veFolder, { recursive: true, force: true });
+    console.log('🧹 Cleaned up angular-nepali-datepicker-ve folder');
+  }
+} catch (err) {
+  console.warn('Warning: Could not delete temporary build folders:', err.message);
+}
+console.log('✅ @rishovt/angular-nepali-datepicker installation completed successfully!');
